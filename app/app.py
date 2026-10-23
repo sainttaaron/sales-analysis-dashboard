@@ -16,9 +16,9 @@ FINDINGS = [
 RECOMMENDATIONS = [
     "Implement a Discounting Policy to Protect Profit Margins",
     "Optimize Pricing Strategies for Different Customer Segments",
-    "Audit Loss-Making Regions and Adjust Logistics Pricing"
-]
+    " Investigate the loss-making states before changing prices"
 
+]
 # Page setup
 st.set_page_config(page_title="Sales Analysis Dashboard", layout="wide")
 
