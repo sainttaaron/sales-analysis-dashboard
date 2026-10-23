@@ -209,10 +209,28 @@ st.subheader("Best-selling products that lose money")
 product = filtered.groupby("Product Name")[["Sales", "Profit"]].sum()
 losers = product[product["Profit"] < 0].nlargest(10, "Sales").round(2)
 
+
 if losers.empty:
     st.info("No loss-making products for these filters.")
 else:
     st.dataframe(losers)
+    
+    
+# ------------------------------------------------------------------
+# Loss-making states
+# ------------------------------------------------------------------
+st.subheader("Loss-making states")
+
+state = filtered.groupby("State")[["Sales", "Profit"]].sum()
+state["Margin %"] = state["Profit"] / state["Sales"] * 100
+state["Avg Discount %"] = filtered.groupby("State")["Discount"].mean() * 100
+
+loss_states = state[state["Profit"] < 0].sort_values("Profit").round(1)
+
+if loss_states.empty:
+    st.info("No loss-making states for these filters.")
+else:
+    st.dataframe(loss_states)    
 
 # ------------------------------------------------------------------
 # Findings
